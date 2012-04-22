@@ -1,0 +1,30 @@
+name: Bytecraft
+version: 0.2
+author: Sabersamus
+main: info.bytecraft.Bytecraft
+description: >
+    A plugin I created for my server Bytecraft
+database: true
+commands:
+    home:
+        description: manage your home
+        permission: bytecraft.home
+        usage: |
+            /<command> - only works if you have your home saved
+            /<command> save - saves or moves your home
+    warp:
+        description: warp to a location
+        permission: bytecraft.warp
+        usage: |
+            /<command> [name]
+    pos:
+        description: shows you your position in the world
+        usage: /<command>
+    tpblock:
+        description: manage your tpblock
+        permission: bytecraft.tpblock
+        usage: /<command> [on|off|status]
+    tp:
+        description: teleport to a player, doesn't work if the player has teleport block on(except for admins)
+        permission: bytecraft.tp
+        usage: /<command> [player]
