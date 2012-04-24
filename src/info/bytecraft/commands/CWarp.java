@@ -1,5 +1,7 @@
 package info.bytecraft.commands;
 
+import java.util.List;
+
 import info.bytecraft.Bytecraft;
 
 import org.bukkit.ChatColor;
@@ -23,6 +25,19 @@ public class CWarp implements CommandExecutor {
         		if(cs instanceof Player){
         			final Player player = (Player)cs;
         		String name = String.valueOf(args[0]).toLowerCase();
+        		if(name.equalsIgnoreCase("list")){
+        			List<Warps> warps = plugin.getDatabase().find(Warps.class).where().ieq("worldName", player.getWorld().getName()).findList();
+        			StringBuilder m = new StringBuilder();
+        			for(Warps warp: warps){
+        				if(warps.size() > 1){
+        					m.append(ChatColor.GOLD + warp.getName() + ChatColor.WHITE + ", ");
+        				}else{
+        					m.append(ChatColor.GOLD + warp.getName());
+        				}
+        			}
+    				player.sendMessage(ChatColor.DARK_GREEN + "Warps in your world: " + m.toString());
+    				return true;
+        		}else{
                 final Warps warp = plugin.getDatabase().find(Warps.class).where().ieq("name", name).findUnique();
                 if (warp == null) {
                     return true;
@@ -37,6 +52,7 @@ public class CWarp implements CommandExecutor {
                    }, 100L);
                 }
                 return true;
+        			}
         		}
         	}else{
         		return true;
