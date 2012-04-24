@@ -1,10 +1,5 @@
 package info.bytecraft.annotation;
 
-/**
- * Holds all the data types that are available to be used
- * @author Sabersamus <rcatron10@gmail.com>
- *
- */
 public enum DataType {
 	/**
 	 * Represents an integer

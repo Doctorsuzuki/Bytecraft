@@ -24,11 +24,11 @@ public class LPlayerKick implements Listener{
         if(x==1){
             event.setQuitMessage(ChatColor.YELLOW + "-Quit-" + ChatColor.AQUA + " Goodbye " + event.getPlayer().getDisplayName() + ChatColor.AQUA + " hope to see you later");
         }else if(x==2){
-             event.setQuitMessage(ChatColor.YELLOW + "-Quit-" + dname + ChatColor.DARK_GREEN + " has left the server");
+             event.setQuitMessage(ChatColor.YELLOW + "-Quit- " + dname + ChatColor.DARK_GREEN + " has left the server");
         }else if(x==3){
-            event.setQuitMessage(ChatColor.YELLOW + "-Quit-" + dname + ChatColor.BLUE + " will be back, don't worry!");
+            event.setQuitMessage(ChatColor.YELLOW + "-Quit-"  + dname + ChatColor.BLUE + " will be back, don't worry!");
         }else if(x==4){
-            event.setQuitMessage(ChatColor.YELLOW + "-Quit-" + dname + ChatColor.YELLOW + " smashed their face on the keyboard just a little too hard");
+            event.setQuitMessage(ChatColor.YELLOW + "-Quit- " + dname + ChatColor.YELLOW + " smashed their face on the keyboard just a little too hard");
         }else{
             event.setQuitMessage(ChatColor.YELLOW + "-Quit-" + ChatColor.AQUA + " Goodbye " + event.getPlayer().getDisplayName() + ChatColor.AQUA + " hope to see you later");
         }

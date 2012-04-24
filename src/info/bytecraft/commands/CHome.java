@@ -37,7 +37,7 @@ public class CHome implements CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("home") && cs instanceof Player) {
 			final Player player = (Player)cs;
 			if(args.length == 0){
-				final HomesDatabase home = plugin.getDatabase().find(HomesDatabase.class).where().ieq("name", player.getName()).findUnique();
+				final HomesDatabase home = plugin.getDatabase().find(HomesDatabase.class).where().ieq("playerName", player.getName()).findUnique();
 				if(home == null){
 					return true;
 				}else{
@@ -53,15 +53,15 @@ public class CHome implements CommandExecutor {
 			}else if(args.length == 1){
 				String usage = String.valueOf(args[0]);
 				if(usage.equalsIgnoreCase("save")){
-					HomesDatabase home = plugin.getDatabase().find(HomesDatabase.class).where().ieq("name", player.getName()).findUnique();
+					HomesDatabase home = plugin.getDatabase().find(HomesDatabase.class).where().ieq("playerName", player.getName()).findUnique();
 					if(home == null){
 						home = new HomesDatabase();
-						home.setName(player);
+						home.setPlayer(player);
 						home.setLocation(player.getLocation());
 						plugin.getDatabase().save(home);
 					}else{
 						home.setLocation(player.getLocation());
-						plugin.getDatabase().refresh(home);
+						plugin.getDatabase().save(home);
 					}
 					player.sendMessage(ChatColor.DARK_AQUA + "Your home has been saved successfully");
 					return true;

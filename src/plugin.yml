@@ -5,6 +5,8 @@ main: info.bytecraft.Bytecraft
 description: >
     A plugin I created for my server Bytecraft
 database: true
+loadafter: [Basic commands]
+softdepend: [Bytes]
 commands:
     home:
         description: manage your home
@@ -28,3 +30,44 @@ commands:
         description: teleport to a player, doesn't work if the player has teleport block on(except for admins)
         permission: bytecraft.tp
         usage: /<command> [player]
+permissions:
+    bytecraft.admin:
+        defualt: false
+        children:
+            bytecraft.home: true
+            bytecraft.warp: true
+            bytecraft.tpblock: true
+            bytecraft.teleport.override: true
+            bytecraft.teleport.silent: true
+            bytecraft.teleport.admin: true
+            bytecraft.god: true
+            bytecraft.compass: true
+            bytecraft.ban: true
+            bytecraft.kick: true
+            bytecraft.item: true
+            bytecraft.give: true
+            bytecraft.who: true
+            bytecraft.tp: true
+            bytecraft.inv: true
+            bytecraft.teleport.admin: true
+            bytecraft.mobspawn: true
+            bytecraft.nuke: true
+    bytecraft.guardian:
+        default: false
+        children:
+            bytecraft.kick: true
+            bytecraft.ban: true
+            bytecraft.warp: true
+            bytecraft.tp: true
+            bytecraft.inv: true
+    bytecraft.donor:
+        default: false
+        children:
+            bytecraft.tpblock: true
+            bytecraft.home: true
+            bytecraft.member: true
+    bytecraft.member:
+        default: true
+        children:
+            bytecraft.warp: true
+            bytecraft.tp: true

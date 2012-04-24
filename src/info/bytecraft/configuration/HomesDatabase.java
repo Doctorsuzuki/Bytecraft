@@ -13,19 +13,6 @@ import com.avaje.ebean.validation.Length;
 import com.avaje.ebean.validation.NotEmpty;
 import com.avaje.ebean.validation.NotNull;
 
-/**
- * This project was created under a custom license.
- * From here on out the term "author", refers to - Sabersamus -
- * the author of this project.
- * From here on out the term "plugin" or "project" refers to the Bukkit
- * plugin coded for the author's personal server Bytecraft.
- * You may use the code found in this project for personal use so long as 
- * you give credit the author of the class, somewhere within your code.
- * If you want to add onto this project, you must contact me at my email address
- * as shown in the java docs.
- * 
- * @author Sabersamus <rcatron10@gmail.com>
- */
 @Entity()
 @Table(name="bytecraft_homes")
 public class HomesDatabase 
@@ -36,7 +23,7 @@ public class HomesDatabase
 
     @Length(max=30)
     @NotEmpty
-    private String name;
+    private String playerName;
     
     @NotNull
     private double x;
@@ -64,20 +51,20 @@ public class HomesDatabase
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getPlayerName() {
+        return this.playerName;
     }
 
-    public void setName(Player player) {
-        this.name = player.getName();
+    public void setPlayer(Player player) {
+        this.playerName = player.getName();
     }
     
-    public void setName(String name){
-    	this.name = name;
+    public void setPlayerName(String name){
+    	this.playerName = name;
     }
     
     public Player getPlayer(){
-    	return Bukkit.getPlayer(name);
+    	return Bukkit.getPlayer(playerName);
     }
 
     public World getWorld(){

@@ -1,5 +1,8 @@
 package info.bytecraft.listeners;
 
+import info.bytecraft.Bytecraft;
+import info.bytecraft.basiccommands.Players;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +11,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 public class LPlayerJoin implements Listener {
+	private static Bytecraft plugin;
+	public LPlayerJoin(Bytecraft instance){
+		plugin = instance;
+	}
+	
 	ChatColor white = ChatColor.WHITE;
 	ChatColor gold = ChatColor.GOLD;
 	ChatColor blue = ChatColor.BLUE;
@@ -27,11 +35,6 @@ public class LPlayerJoin implements Listener {
 	public void onJoin(PlayerLoginEvent event){
 		Player player = event.getPlayer();
 		String name = player.getName();
-		if(player.getName().equalsIgnoreCase("sabersamus") || player.getName().equalsIgnoreCase("player")){
-			player.setDisplayName(gold + name + white);
-			player.setPlayerListName(gold + name);
-			return;
-		}
 		if(player.hasPermission(admin)){
 			player.setDisplayName(red + name + white);
 			player.setPlayerListName(red + name);
@@ -67,6 +70,12 @@ public class LPlayerJoin implements Listener {
 	
 	@EventHandler
 	public void onEnter(PlayerJoinEvent event){
+		Player player = event.getPlayer();
+		Players players = plugin.getServer().getPluginManager().getPlugin("Basic commands").getDatabase().find(Players.class).where().ieq("playerName", player.getName()).findUnique();
+		if(players != null && players.isVanished()){
+			event.setJoinMessage(null);
+			return;
+		}
 		event.setJoinMessage(ChatColor.DARK_AQUA + "Please welcome " + event.getPlayer().getDisplayName() + ChatColor.DARK_AQUA + " to bytecraft");
 	}
 
