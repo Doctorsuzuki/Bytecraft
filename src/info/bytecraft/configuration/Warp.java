@@ -5,7 +5,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -15,7 +14,7 @@ import com.avaje.ebean.validation.NotNull;
 
 @Entity()
 @Table(name="bytecraft_warps")
-public class Warps {
+public class Warp {
 
     @Id
     private int id;
@@ -43,8 +42,6 @@ public class Warps {
     @NotNull
     private String worldName;
     
-    private String message;
-
     public void setId(int id) {
         this.id = id;
     }
@@ -117,17 +114,6 @@ public class Warps {
         this.yaw = yaw;
     }
     
-    public String getMessage(){
-    	if(this.message == null){
-    		return ChatColor.AQUA + "Welcome to " + this.getName();
-    	}
-    	return this.message.replaceAll("(&([a-f0-9]))", ChatColor.COLOR_CHAR + "$2");
-    }
-    
-    public void setMessage(String message){
-    	this.message = message;
-    }
-
     public void setLocation(Location loc){
     	this.setWorldName(loc.getWorld().getName());
     	this.setX(loc.getX());

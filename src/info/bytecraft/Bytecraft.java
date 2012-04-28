@@ -10,17 +10,13 @@ import javax.persistence.PersistenceException;
 
 import info.bytecraft.configuration.HomesDatabase;
 import info.bytecraft.configuration.TeleportBlock;
-import info.bytecraft.configuration.Warps;
+import info.bytecraft.configuration.Warp;
+
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Bytecraft extends JavaPlugin 
 {
-    @Override
-    public void onDisable()
-    {
-
-    }
 
     @Override
     public void onEnable()
@@ -31,11 +27,10 @@ public class Bytecraft extends JavaPlugin
         
         this.registerCommands();
         this.registerEvents();
-        
     }
 
     private void registerCommands()
-    {        
+    {
         this.getCommand("tpblock").setExecutor(new CTpBlock(this));
         this.getCommand("tpblock").setPermissionMessage("");
         this.getCommand("tp").setExecutor(new CTeleport(this));
@@ -46,13 +41,12 @@ public class Bytecraft extends JavaPlugin
         this.getCommand("home").setExecutor(new CHome(this));
         this.getCommand("pos").setExecutor(new CPosition(this));
     }
-    
+
     private void registerEvents()
     {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new LPlayerKick(), this);
         pm.registerEvents(new LPlayerJoin(this), this);
-        pm.registerEvents(new SignWarp(this), this);
         pm.registerEvents(new LCompass(), this);
     }
     	
@@ -66,7 +60,7 @@ public class Bytecraft extends JavaPlugin
     
     private void setupWarpsDatabase(){
     	try{
-    		getDatabase().find(Warps.class).findRowCount();
+    		getDatabase().find(Warp.class).findRowCount();
     	}catch(PersistenceException ex){
     		installDDL();
     	}
@@ -84,8 +78,9 @@ public class Bytecraft extends JavaPlugin
     public List<Class<?>> getDatabaseClasses() {
         List<Class<?>> list = new ArrayList<Class<?>>();
         list.add(HomesDatabase.class);
-        list.add(Warps.class);
+        list.add(Warp.class);
         list.add(TeleportBlock.class);
         return list;
     }
+
 }

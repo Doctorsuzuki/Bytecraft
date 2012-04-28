@@ -3,9 +3,7 @@ package info.bytecraft.manager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-/**
- * @deprecated 
- */
+@Deprecated
 public interface IHome 
 {
 	@Deprecated

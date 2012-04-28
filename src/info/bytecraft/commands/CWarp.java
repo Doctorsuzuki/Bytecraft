@@ -9,7 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import info.bytecraft.configuration.Warps;
+import info.bytecraft.configuration.Warp;
 
 public class CWarp implements CommandExecutor {
 
@@ -26,9 +26,9 @@ public class CWarp implements CommandExecutor {
         			final Player player = (Player)cs;
         		String name = String.valueOf(args[0]).toLowerCase();
         		if(name.equalsIgnoreCase("list")){
-        			List<Warps> warps = plugin.getDatabase().find(Warps.class).where().ieq("worldName", player.getWorld().getName()).findList();
+        			List<Warp> warps = plugin.getDatabase().find(Warp.class).where().ieq("worldName", player.getWorld().getName()).findList();
         			StringBuilder m = new StringBuilder();
-        			for(Warps warp: warps){
+        			for(Warp warp: warps){
         				if(warps.size() > 1){
         					m.append(ChatColor.GOLD + warp.getName() + ChatColor.WHITE + ", ");
         				}else{
@@ -38,7 +38,7 @@ public class CWarp implements CommandExecutor {
     				player.sendMessage(ChatColor.DARK_GREEN + "Warps in your world: " + m.toString());
     				return true;
         		}else{
-                final Warps warp = plugin.getDatabase().find(Warps.class).where().ieq("name", name).findUnique();
+                final Warp warp = plugin.getDatabase().find(Warp.class).where().ieq("name", name).findUnique();
                 if (warp == null) {
                     return true;
                 }else{
@@ -47,7 +47,6 @@ public class CWarp implements CommandExecutor {
                 	  @Override
                 	  public void run(){
                 		  player.teleport(warp.getLocation());
-                		  player.sendMessage(ChatColor.AQUA + warp.getMessage());
                 	  }
                    }, 100L);
                 }

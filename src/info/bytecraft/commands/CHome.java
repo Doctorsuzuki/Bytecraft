@@ -9,7 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 /** @author Sabersamus <rcatron10@gmail.com> */
@@ -25,6 +24,9 @@ public class CHome implements CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("home") && cs instanceof Player) {
 			final Player player = (Player)cs;
 			if(args.length == 0){
+				if(!player.hasPermission("bytecraft.home")){
+					return true;
+				}
 				final HomesDatabase home = plugin.getDatabase().find(HomesDatabase.class).where().ieq("playerName", player.getName()).findUnique();
 				if(home == null){
 					return true;
@@ -62,5 +64,5 @@ public class CHome implements CommandExecutor {
 		}
 		return false;
 	}
-
+	
 }

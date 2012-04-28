@@ -24,11 +24,13 @@ public class CPosition implements CommandExecutor {
 				ChatColor white = ChatColor.WHITE;
 				Location loc = player.getLocation();
 				player.sendMessage(green + "World: " + white + loc.getWorld().getName());
-				player.sendMessage(green + "X: " + white + loc.getX());
-				player.sendMessage(green + "Y: " + white + loc.getY());
-				player.sendMessage(green + "Z: " + white + loc.getZ());
-				player.sendMessage(green + "Yaw: " + white + loc.getYaw());
-				player.sendMessage(green + "Pitch: " + white + loc.getPitch());
+				player.sendMessage(green + "X: " + white + loc.getX() + ChatColor.GRAY+"("+(int)loc.getX()+")");
+				player.sendMessage(green + "Y: " + white + loc.getY() + ChatColor.GRAY+"("+(int)loc.getY()+")");
+				player.sendMessage(green + "Z: " + white + loc.getZ() + ChatColor.GRAY+"("+(int)loc.getZ()+")");				
+				player.sendMessage(green + "Pitch: " + white + loc.getPitch() + ChatColor.GRAY+"("+(int)loc.getPitch()+")");
+				player.sendMessage(green + "Yaw: " + white + loc.getYaw() + ChatColor.GRAY+"("+(int)loc.getYaw()+")");
+				player.sendMessage(green + "Distance from spawn: " + white + loc.distance(player.getWorld().getSpawnLocation()) + ChatColor.GRAY+"("+(int)loc.distance(player.getWorld().getSpawnLocation())+")");
+
 				return true;
 			}
 		}

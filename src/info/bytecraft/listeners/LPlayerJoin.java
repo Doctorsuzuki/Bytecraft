@@ -22,7 +22,7 @@ public class LPlayerJoin implements Listener {
 	ChatColor yellow = ChatColor.YELLOW;
 	ChatColor red = ChatColor.RED;
 	ChatColor dgreen = ChatColor.DARK_GREEN;
-	ChatColor green = ChatColor.DARK_GREEN;
+	ChatColor green = ChatColor.GREEN;
 	ChatColor purple = ChatColor.DARK_PURPLE;
 	private String admin = "bytecraft.admin";
 	private String guardian = "bytecraft.guardian";
@@ -30,43 +30,44 @@ public class LPlayerJoin implements Listener {
 	private String donor = "bytecraft.donator";
 	private String member = "bytecraft.member";
 	private String child = "bytecraft.child";
+
 	
-	@EventHandler
-	public void onJoin(PlayerLoginEvent event){
-		Player player = event.getPlayer();
-		String name = player.getName();
-		if(player.hasPermission(admin)){
-			player.setDisplayName(red + name + white);
-			player.setPlayerListName(red + name);
-			return;
-		}
-		if(player.hasPermission(guardian)){
-			player.setDisplayName(blue + name + white);
-			player.setPlayerListName(blue + name);
-			return;
-		}
-		if(player.hasPermission(builder)){
-			player.setDisplayName(purple + name + white);
-			player.setPlayerListName(purple + name);
-			return;
-		}
-		if(player.hasPermission(donor)){
-			player.setDisplayName(yellow + name + white);
-			player.setPlayerListName(yellow + name + white);
-			return;
-		}
-		if(player.hasPermission(member)){
-			player.setDisplayName(dgreen + name + white);
-			player.setPlayerListName(dgreen + name);
-			return;
-		}
-		if(player.hasPermission(child)){
-			player.setDisplayName(green + name + white);
-			player.setPlayerListName(green + name);
-			return;
-		}
-		
-	}
+	  @EventHandler
+	  public void onJoin(PlayerLoginEvent event)
+	  {
+	    Player player = event.getPlayer();
+	    String name = player.getName();
+	    if (player.hasPermission(this.admin)) {
+	      player.setDisplayName(this.red + name + this.white);
+	      player.setPlayerListName(this.red + name);
+	      return;
+	    }
+	    if (player.hasPermission(this.guardian)) {
+	      player.setDisplayName(this.blue + name + this.white);
+	      player.setPlayerListName(this.blue + name);
+	      return;
+	    }
+	    if (player.hasPermission(this.builder)) {
+	      player.setDisplayName(this.purple + name + this.white);
+	      player.setPlayerListName(this.purple + name);
+	      return;
+	    }
+	    if (player.hasPermission(this.donor)) {
+	      player.setDisplayName(this.yellow + name + this.white);
+	      player.setPlayerListName(this.yellow + name + this.white);
+	      return;
+	    }
+	    if (player.hasPermission(this.member)) {
+	      player.setDisplayName(this.dgreen + name + this.white);
+	      player.setPlayerListName(this.dgreen + name);
+	      return;
+	    }
+	    if (player.hasPermission(this.child)) {
+	      player.setDisplayName(this.green + name + this.white);
+	      player.setPlayerListName(this.green + name);
+	      return;
+	    }
+	  }
 	
 	@EventHandler
 	public void onEnter(PlayerJoinEvent event){
@@ -76,7 +77,7 @@ public class LPlayerJoin implements Listener {
 			event.setJoinMessage(null);
 			return;
 		}
-		event.setJoinMessage(ChatColor.DARK_AQUA + "Please welcome " + event.getPlayer().getDisplayName() + ChatColor.DARK_AQUA + " to bytecraft");
+		event.setJoinMessage(ChatColor.DARK_AQUA + "Please welcome " + event.getPlayer().getDisplayName() + ChatColor.DARK_AQUA + " to bytecraft + from ");
 	}
 
 }
